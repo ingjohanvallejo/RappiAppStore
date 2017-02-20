@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class Services {
     
-    let url = "https://itunes.apple.com/us/rss/topfreeapplications/limit=20/json"
+    let url = "https://itunes.apple.com/us/rss/topfreeapplications/limit=50/json"
 
     /**
      Consulta al WS para traer la información de las Apps
@@ -38,9 +38,9 @@ class Services {
                             var app = [String : String]()
                             app["id"] = entry["id"]["attributes"]["im:id"].stringValue
                             app["name"] = entry["im:name"]["label"].stringValue
-                            app["price"] = entry["im:price"]["label"].stringValue
+                            app["price"] = entry["im:price"]["attributes"]["amount"].stringValue
                             app["summary"] = entry["summary"]["label"].stringValue
-                            app["image"] = entry["im:image"][0]["label"].stringValue.replacingOccurrences(of: "100x100", with: "600x600")
+                            app["image"] = entry["im:image"][0]["label"].stringValue.replacingOccurrences(of: "53x53", with: "500x500")
                             app["artist"] = entry["im:artist"]["label"].stringValue
                             app["categoryId"] = entry["category"]["attributes"]["im:id"].stringValue
                             result.append(app)
